@@ -4,7 +4,7 @@ import socket
 import sys
 import udt
 
-RECEIVER_ADDR = ('localhost', 8080)
+RECEIVER_ADDR = ('0.0.0.0', 8080)
 
 # Receive packets from the sender
 def receive(sock, filename):
