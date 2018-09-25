@@ -19,6 +19,7 @@ def receive(sock, filename):
     while True:
         # Get the next packet from the sender
         pkt, addr = udt.recv(sock)
+
         if not pkt:
             break
         seq_num, data = packet.extract(pkt)
@@ -33,6 +34,7 @@ def receive(sock, filename):
             expected_num += 1
             file.write(data)
         else:
+            # send last acknoledged number
             print('Sending ACK', expected_num - 1)
             pkt = packet.make(expected_num - 1)
             udt.send(pkt, sock, addr)

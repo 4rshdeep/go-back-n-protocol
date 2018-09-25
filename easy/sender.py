@@ -10,10 +10,10 @@ from timer import Timer
 
 PACKET_SIZE = 512
 RECEIVER_ADDR = ('localhost', 8080)
-SENDER_ADDR = ('localhost', 0)
+SENDER_ADDR = ('localhost', 9999)
 SLEEP_INTERVAL = 0.05
 TIMEOUT_INTERVAL = 0.5
-WINDOW_SIZE = 4
+WINDOW_SIZE = 7
 
 # Shared resources across threads
 base = 0
@@ -49,7 +49,7 @@ def send(sock, filename):
         seq_num += 1
 
     num_packets = len(packets)
-    print('I gots', num_packets)
+    print('I got ', num_packets, ' packets')
     window_size = set_window_size(num_packets)
     next_to_send = 0
     base = 0
