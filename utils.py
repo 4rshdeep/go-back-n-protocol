@@ -1,6 +1,6 @@
 import random
 import socket
-import timer
+import time
 
 # functions to send and receive packets
 def send_packet(packet, sock, addr):
