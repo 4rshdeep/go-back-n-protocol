@@ -3,8 +3,15 @@ import socket
 import time
 
 # functions to send and receive packets
+DATAFRAME_LOSS = 400
 def send_packet(packet, sock, addr):
-    sock.sendto(packet, addr)
+    if random.randint(0, 1000) > DATAFRAME_LOSS:
+        sock.sendto(packet, addr)
+    return
+
+def send_ack(packet, sock, addr):
+    if random.randint(0, 100) > 5:
+        sock.sendto(packet, addr)
     return
 
 def receive_packet(sock):

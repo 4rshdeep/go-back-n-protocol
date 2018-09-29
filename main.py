@@ -1,18 +1,22 @@
 import socket
 import _thread
 import sys
-import numpy as np
+# import numpy as np
 import utils
 import argparse
 from utils import Timer
 import time
+import random
 
 LOWER_LIMT_PACKET= 64
 UPPER_LIMIT_PACKET= 256
 WINDOW_SIZE= 7
+# WINDOW_SIZE= 7
+# WINDOW_SIZE= 9
+# WINDOW_SIZE= 2
 TIMEOUT=0.5
-SENDER_ADDRESS= ('0.0.0.0', 9999)
-RECEIVER_ADDRESS=('0.0.0.0', 8080 )
+SENDER_ADDRESS= ('10.0.0.1', 9999)
+RECEIVER_ADDRESS=('10.0.0.2', 8080 )
 PERIOD= 0.05
 
 #open file and convert to bytes
@@ -48,9 +52,8 @@ def sender(filename):
     all_packets=[]
 
     while True:
-        packet_size = (int)(np.random.uniform(LOWER_LIMT_PACKET, UPPER_LIMIT_PACKET+1))
-        data_packet = file.read(packet_size)
-        data_packet = file.read(packet_size)
+        packet_size = (int)(random.randint(LOWER_LIMT_PACKET, UPPER_LIMIT_PACKET+1))
+        data_packet = file.read(UPPER_LIMIT_PACKET)
         
         if not data_packet:
             print(data_packet)
@@ -118,14 +121,14 @@ def receive(sock, filename):
 
             if seq_num == exp_frame:
                 pkt = utils.make_packet(exp_frame)
-                utils.send_packet(pkt, sock, addr)
+                utils.send_ack(pkt, sock, addr)
                 exp_frame += 1
                 print("Received Sequence number ", seq_num)
                 file.write(data)
             else:
                 print("Requested Sequence number ", exp_frame-1)
                 pkt = utils.make_packet(exp_frame-1)
-                utils.send_packet(pkt, sock, addr)
+                utils.send_ack(pkt, sock, addr)
 
 
 def receiver(filename):
