@@ -29,7 +29,7 @@ def receive(sock, filename):
                 utils.send_packet(pkt, sock, addr)
 
 
-def main():
+def receiver():
     if len(sys.argv)!=2:
         exit()
     else:
@@ -40,4 +40,4 @@ def main():
         sock.close()
 
 if __name__ == '__main__':
-    main()
+    receiver()
