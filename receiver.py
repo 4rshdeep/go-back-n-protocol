@@ -1,4 +1,3 @@
-import packet
 import socket
 import sys
 import utils
@@ -17,7 +16,7 @@ def receive(sock, filename):
             if not pkt:
                 # sentinel is empty packet therefore end of transmission
                 break
-
+            # print(pkt)
             seq_num, data = utils.extract_packet(pkt)
 
             if seq_num == exp_frame:

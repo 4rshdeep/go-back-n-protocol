@@ -22,6 +22,7 @@ def receive(sock, filename):
 
         if not pkt:
             break
+        # print(pkt)
         seq_num, data = packet.extract(pkt)
         print('Got packet', seq_num)
         

@@ -18,7 +18,8 @@ def make_packet(seq_num, data=b''):
 
 def extract_packet(packet):
     # try changing byte order
-    seq_num = int.from_bytes(packets[:4], byteorder='little', signed=True)
+    seq_num = int.from_bytes(packet[:4], byteorder='little', signed=True)
+    return seq_num, packet[4:]
 
 def make_empty_packet():
     return b''
