@@ -15,10 +15,10 @@ WINDOW_SIZE= 7
 # WINDOW_SIZE= 9
 # WINDOW_SIZE= 2
 TIMEOUT=0.5 # give a timeout after 0.5 seconds of no ack
-# SENDER_ADDRESS= ('10.0.0.1', 9999)
-SENDER_ADDRESS= ('localhost', 9999)
-# RECEIVER_ADDRESS=('10.0.0.2', 8080 )
-RECEIVER_ADDRESS=('localhost', 8080 )
+SENDER_ADDRESS= ('10.0.0.1', 9999)
+# SENDER_ADDRESS= ('localhost', 9999)
+RECEIVER_ADDRESS=('10.0.0.2', 8080 )
+# RECEIVER_ADDRESS=('localhost', 8080 )
 PERIOD= 0.05
 
 # lock to be used 
